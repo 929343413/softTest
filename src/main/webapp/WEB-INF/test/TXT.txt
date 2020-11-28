@@ -1,0 +1,41 @@
+/*
+	本题采用c++语言编写
+ 	161830327  罗文伟 
+*/ 
+
+#include<iostream>
+using namespace std;
+
+//判断日期是否合法，使用排除法 
+bool checkDate(int month, int day)
+{
+	if(month < 1 || month > 12 || day < 1 || day > 31)                         //首先判断输入月份与日是否超出边界值 
+	return false;
+	if(month == 2 && day > 28)                                                 //接着判断二月份的日是否合法 
+	return false;
+	if((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)    //最后判断小月的日期是否输入合法 
+	return false;
+	
+	return true;                                                               //将二月与小月排除后，在输入合法的情况下大月就不需要再判断了 
+ } 
+
+int main()
+{
+	int month, day;                      //定义输入的变量名，month对应月份，day对应日 
+	cout<<"请输入日期（月、日）：";      //提示输入信息 
+	cin >> month >> day;
+	bool check;                          //定义判断变量check 
+	check = checkDate(month, day);       //调用checkDate函数来判断该日期是否合法，返回判断结果为check 
+	if(check)                            //根据函数返回结果输出判断结果到界面中 
+	cout<<"日期合法"<<endl;
+	else
+	cout<<"日期不合法"<<endl;
+	return 0;
+}
+
+/*
+	圈复杂度：10
+		两种计算方法：
+			1.分支数 + 1 = 9 + 1 = 10
+			2.边数 - 节点数 + 2 = 21 - 13 + 2 = 10 
+*/ 
